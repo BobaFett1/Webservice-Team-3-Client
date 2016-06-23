@@ -4,22 +4,40 @@
 var app = angular.module('app', [])
 
     app.controller('mainController', function($scope, $http) {
-        $scope.formData = {};
-        //$scope.messageData = {};
-        $scope.test ="hallo";
-
+        $scope.massageData = {};
         // Get all messages
 
-        $http({
-            method: 'GET',
-            url: 'http://webservice-team-3.herokuapp.com/1',
-        }).success(function(data){
-            $scope.messageData = data;
-        })
-            .error(function(data){
-                alert('error')
-            });
+        $scope.login = function () {
 
+            $http({
+                method: 'GET',
+                url: 'http://webservice-team-3.herokuapp.com/'+$scope.loginId
+            })
+                .success(function (data) {
+                    $scope.messageData = data;
+                })
+                .error(function (data) {
+                    alert('error')
+                });
+        }
+
+
+        $scope.register = function () {
+
+            $http({
+                method: 'POST',
+                url: 'http://webservice-team-3.herokuapp.com/'+$scope.registerId,
+                data: {'saltMaster=':$scope.saltmaster, 'privKeyEnc=': $scope.privkeyenc, 'pubKey=': $scope.pubkey},
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+                .success(function (data) {
+                    $scope.messageData = "Der Benutzer wurde erfolgreich registriert";
+                })
+                .error(function (data) {
+                    $scope.messageData = "Der Benutzer konnte nicht registriert werden";
+                })
+        }
+    });
         // $http.jsonp('https://httpbin.org/get')
         //     .success(function(data) {
         //         $scope.messageData = data;
@@ -55,4 +73,3 @@ var app = angular.module('app', [])
         //         });
         // };
 
-    });

@@ -11,6 +11,25 @@
     <body>
         <div ng-controller="mainController">
             <p>{{messageData}}</p>
+            <form ng-submit="login()">
+                <!-- will automatically update $scope.user.first_name and .last_name -->
+                <input type="text" ng-model="loginId">
+                <input type="submit" value="Login">
+            </form>
+            <br>
+            <br>
+            <form ng-submit="register()">
+                <!-- will automatically update $scope.user.first_name and .last_name -->
+                <input type="text" ng-model="registerId">
+                <br>
+                <input type="text" ng-model="saltmaster">
+                <br>
+                <input type="text" ng-model="prikeyenc">
+                <br>
+                <input type="text" ng-model="pubkey">
+                <br>
+                <input type="submit" value="Register">
+            </form>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
         <script src="js/app.js"></script>
