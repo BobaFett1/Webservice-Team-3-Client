@@ -9,15 +9,26 @@ var app = angular.module('app', [])
         $scope.test ="hallo";
 
         // Get all messages
-        $http.get('http://webservice-team-3.herokuapp.com/1')
-            .success(function(data) {
-                $scope.messageData = data.userid;
-                console.log(data);
-            })
-            .error(function(error) {
-                $scope.messageData = "nein";
-                console.log('Error: ' + error);
+
+        $http({
+            method: 'GET',
+            url: 'http://webservice-team-3.herokuapp.com/1',
+        }).success(function(data){
+            $scope.messageData = data;
+        })
+            .error(function(data){
+                alert('error')
             });
+
+        // $http.jsonp('https://httpbin.org/get')
+        //     .success(function(data) {
+        //         $scope.messageData = data;
+        //         console.log(data);
+        //     })
+        //     .error(function(error) {
+        //         $scope.messageData = "error";
+        //         console.log('Error: ' + error);
+        //     });
         //
         // // Create a new message
         // $scope.sendMessage = function() {
