@@ -1,13 +1,14 @@
 /**
  * Created by michelehmen on 22.06.16.
  */
+var ursa = require(ursa);
 var app = angular.module('app', [])
 
     app.controller('mainController', function($scope, $http) {
         $scope.massageData = {};
         // Get all messages
-
-
+        //http://127.0.0.1:3000/
+        //http://webservice-team-3.herokuapp.com/
         $scope.login = function () {
 
             $http({
@@ -22,14 +23,13 @@ var app = angular.module('app', [])
                 });
         }
 
-        $scope.register = function () {
 
+        $scope.register = function () {
 
             $http({
                 method: 'POST',
                 url: 'http://webservice-team-3.herokuapp.com/'+$scope.registerId,
-                data: {'saltMaster=':$scope.saltmaster, 'privKeyEnc=': $scope.privkeyenc, 'pubKey=': $scope.pubkey},
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                data: {'saltMaster':$scope.saltmaster, 'privKeyEnc': $scope.privkeyenc, 'pubKey': $scope.pubkey}
             })
                 .success(function (data) {
                     $scope.messageData = "Der Benutzer wurde erfolgreich registriert";
@@ -73,6 +73,4 @@ var app = angular.module('app', [])
         //             console.log('Error: ' + data);
         //         });
         // };
-
-
 
