@@ -7,6 +7,7 @@ var app = angular.module('app', [])
         $scope.massageData = {};
         // Get all messages
 
+
         $scope.login = function () {
 
             $http({
@@ -21,8 +22,8 @@ var app = angular.module('app', [])
                 });
         }
 
-
         $scope.register = function () {
+
 
             $http({
                 method: 'POST',
@@ -72,4 +73,6 @@ var app = angular.module('app', [])
         //             console.log('Error: ' + data);
         //         });
         // };
+
+
 
